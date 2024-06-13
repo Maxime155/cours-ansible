@@ -1,0 +1,33 @@
+- name: apt_key
+  hosts: all
+  become: yes
+  tasks: 
+  - name: s'assurer qu'il n'y a pas d'ancienne version installé
+    apt: 
+      name: docker,docker-engine
+      state: absent
+  - name: installer les dépendances
+    apt:
+      name: apt-transport-https,ca-certificates,gnupg
+      state: present
+      autoclean: true
+  - name: ajouter docker avec la clée
+    apt_key:
+      url: "https://download.docker.com/linux/debian/gpg"
+      state: present
+  - name: ajouter le dépôt docker
+    apt_repository:
+      repo: "deb [arch=amd64] https://download.docker.com/linux/debian buster stable"
+      state: present
+      update_cache: true
+  - name: installer docker
+    apt: 
+      name: docker-ce
+      state: present
+  - name: démarrer docker
+    systemd:
+      name: docker
+      state: started
+      enabled: yes
+
+

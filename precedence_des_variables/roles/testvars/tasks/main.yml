@@ -1,0 +1,8 @@
+---
+- name: set fact
+  set_fact:
+    var1: "set fact var"
+
+- name: debug de la variable
+  debug: 
+    var: var1

@@ -1,0 +1,11 @@
+append -> yes/no lien/ajout avec un group
+comment -> commentaire
+create_home -> créer un home
+move_home -> déplacer un home
+expires -> date d'expiration
+force -> forcer la suppression d'un user
+password -> hash du password
+password_lock -> vérouiller un password
+remove -> absent supprime les répertoires du user
+state -> création / suppression 
+update_password -> always/on_create

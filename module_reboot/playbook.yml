@@ -1,0 +1,26 @@
+- name: module_reboot
+  hosts: all 
+  become: yes
+  tasks: 
+  - name: 
+    file:
+      state: touch
+      path: /tmp/toto.txt
+  - name: test a.txt
+    stat:
+      path: /tmp/toto.txt
+    register: __fichier_toto
+  - name: reboot de la machine
+    reboot:
+      msg: "Reboot via ansible"
+      connect_timeout: 5
+      reboot_timeout: 300
+      pre_reboot_delay: 0
+      post_reboot_delay: 10
+      test_command: uptime
+    when:  __fichier_toto.stat.exists
+  - name: création du 2eme fichier
+    file:
+      path: /tmp/reboot_ok.txt
+      state: touch
+

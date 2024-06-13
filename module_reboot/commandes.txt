@@ -1,0 +1,6 @@
+boot_time_command -> commande qui généree l'id de reboot
+connect_timeout -> timeout de la connexion en seconde
+post_reboot_delay -> temps d'attente en secondes après le reboot 
+pre_reboot_delay -> délai avant de lancer le reboot
+reboot_timeout -> combien de temps dure le redémarrage
+test_command -> commande de test pour confirmer le succès du reboot

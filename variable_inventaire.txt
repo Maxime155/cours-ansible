@@ -1,0 +1,5 @@
+sudo hostnamectl set-hostname node1
+ansible -i "node1", all -e "var1=maxim" -m debug -a 'msg={{ var1 }}'
+
+
+

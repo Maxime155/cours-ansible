@@ -1,0 +1,11 @@
+- name: test de unarchive
+  hosts: localhost
+  connection: local
+  tasks:
+# installer wget si besoin
+# wget https://github.com/prometheus/node_exporter/releases/download/v1.8.1/node_exporter-1.8.1.linux-386.tar.gz
+  - name: unarchive node exporter
+    unarchive:
+      src: /tmp/node_exporter-1.8.1.linux-386.tar.gz
+      dest: /home/maxime
+      # problème de la méthode ci-dessus c'est qui l'installe sur toute les machines

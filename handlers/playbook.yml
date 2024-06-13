@@ -1,0 +1,48 @@
+- name: handlers
+  hosts: node1
+  become: yes
+  tasks: 
+  - name: installation de nginx
+    apt:
+      name: curl,nginx
+      state: present
+      update_cache: yes
+      cache_valid_time: 3600
+  - name: suppression vhost par défaut
+    file:
+      path: "{{ item }}"
+      state: absent
+    with_items:
+    -  "/etc/nginx/sites-available/default"
+    -  "/etc/nginx/sites-enabled/default"
+  - name: installation du vhost
+    template:
+      src: vhost.conf.j2
+      dest: "/etc/nginx/sites-available/vhost.conf"
+      owner: maxime
+      group: maxime
+      mode: 0644
+    notify: reload_nginx
+  - name: liens symbolique vhost
+    file:
+      src: "/etc/nginx/sites-available/vhost.conf"
+      dest: "/etc/nginx/sites-enabled/vhost.conf"
+      state: link
+  - name: start nginx
+    systemd:
+      name: nginx
+      state: started
+  - name: check if need to restart
+    stat: 
+      path: /var/run/reboot.pending
+    register: _need_reboot
+    changed_when: _need_reboot.stat.exists
+    notify: reboot_server
+  # se lance à la fin du script
+  handlers:
+  - name: reload_nginx
+    systemd:
+      name: nginx
+      state: reload
+
+

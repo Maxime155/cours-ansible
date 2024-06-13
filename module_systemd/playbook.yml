@@ -1,0 +1,17 @@
+- name: utilisation de systemd
+  hosts: all
+  become: yes
+  tasks: 
+  - name: installation de haproxy
+    apt:
+      name: haproxy
+      state: present
+      update_cache: yes
+      cache_valid_time: 3600
+  # Souvent les services démarre à l'installation
+  - name: start haproxy
+    systemd:
+      name: haproxy
+      state: started
+      enabled: yes
+      daemon-reload: yes

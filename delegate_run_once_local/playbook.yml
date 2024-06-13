@@ -1,0 +1,17 @@
+- name: delegate 
+  #hosts: all
+  hosts: localhost
+  connection: local 
+  become: yes
+  tasks: 
+  - name: création du fichier avec délégation
+    debug:
+      var: var1  
+  - name: création du fichier avec délégation
+    debug:
+      var: var1
+    delegate_to: var1
+  - name: faire passer une commande en local
+    file: 
+     path: /tmp/test
+     state: touch

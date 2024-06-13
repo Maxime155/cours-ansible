@@ -1,0 +1,10 @@
+---
+
+- name: generate SSH key
+  openssh_keypair:
+    path: /tmp/maxime
+    type: rsa
+    size: 4096
+    state: present
+    force: no
+

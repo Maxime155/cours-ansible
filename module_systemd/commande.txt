@@ -1,0 +1,10 @@
+Gestion des systemd et reload
+daemon_reload -> execute un reload pour prendre en compte les changements de configuration
+enabled -> active le démarrage du boot du service (le mettre à chaque fois)
+force -> écrase les liens symboliques systemd 
+masked -> masquer le service
+no_block -> ne pas attendre la fin de l'opération pour continuer (ne pas le faire)
+scope -> systemd pour un user ou plusieurs
+state -> started / stopped / reloaded / restarted
+
+

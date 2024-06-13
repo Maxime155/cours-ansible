@@ -1,0 +1,44 @@
+- name: Mon premier playbook
+  hosts: common
+  become: yes
+  tasks: 
+  - name: check connexion
+    ping:
+
+  - name: création du dossier test1
+    file:
+      path: "/tmp/test1"
+      state: directory
+      owner: root
+      group: root
+      mode: 0755
+
+  - name: création de fichier folder.txt
+    file:
+      path: "/tmp/test1/folder.txt"
+      state: touch
+      owner: maxime
+      group: root
+      mode: 0755
+
+        #- name: voir si un fichier existe
+        #file:
+        #path: "/tmp/test2/folder.txt"
+        #state: file
+        #owner: maxime
+        #group: root
+        #mode: 0755
+
+  - name: lien symbolique
+    file:
+      src: "/tmp/test1/"
+      dest: "/tmp/symlink"
+      state: link
+      owner: maxime
+      group: root
+      mode: 0755
+
+  - name: delete 
+    file:
+      path: "/tmp/test1/"
+      state: absent

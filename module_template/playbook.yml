@@ -1,0 +1,23 @@
+- name: les templates
+  hosts: all
+  vars:
+    msg: "Test template"
+    nompersonne:
+    - { nom: "toto", age: "10", ville: "Paris"}
+    - { nom: "titi", age: "11", ville: "Toulouse"}
+    - { nom: "tata", age: "12", ville: "Marseille"}
+  tasks: 
+  - name: premier test
+    template:
+      #pour la source mettre .yml.j2 car c'est du jinja
+      src: test.yml.j2
+      dest: /tmp/exemple_{{ item.nom }}  
+      #methode pour le mettre dans le fichier
+      #dest: /tmp/exemple.yml
+      owner: maxime
+      group: maxime
+      backup: yes
+    with_items: 
+    - "{{ nompersonne }}"
+
+

@@ -1,0 +1,17 @@
+- name: module copy
+  hosts: all 
+  become: yes
+  vars:
+    monfichier:
+     - {src: "test.txt", dest: "/tmp/test1.txt", mode: "0755", owner: "ssh"}
+     - {src: "test.txt", dest: "/home/ssh/test2.txt", mode: "0644", owner: "ssh"}
+  tasks:
+  - name: module copy
+    copy:
+      src: "{{ item.src }}"
+      dest: "{{ item.dest }}" 
+      mode: "{{ item.mode }}"
+      owner: "{{ item.owner }}"
+      # force: no si modification sur le fichier source ne fait pas la bascule
+    with_items: 
+      - "{{ monfichier }}"

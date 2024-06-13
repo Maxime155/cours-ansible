@@ -1,0 +1,24 @@
+- name: module stat
+  hosts: all
+  become: yes
+  tasks:
+  - name: création d'un fichier
+    file:
+      path: /tmp/toto.txt
+      state: touch
+      owner: toto1
+  - name: test de stat
+    stat:
+      path: /tmp/toto.txt  
+    register: __stat_toto1 
+    #enregistrer ce que le module prévoit pour l'output
+  - name: affichage
+    debug: 
+      # var affiche tout et le msg on filtre sur une variable
+      #var: __stat_toto1
+      msg: "Mon fichier existe: {{ __stat_toto1.stat.exists }}"
+  - name: création du répertoire
+    file: 
+     path: /tmp/toto1
+     state: directory
+    when: __stat_toto1.stat.exists == True 

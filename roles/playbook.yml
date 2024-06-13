@@ -1,0 +1,12 @@
+- name: installation en local de la clée ssh
+  connection: local
+  hosts: localhost
+  roles:
+    - ssh_keygen
+
+- name: installation des serveurs (users, nginx)
+  hosts: all 
+  become: yes # élévation de privilége
+  roles:
+  - users
+  - nginx

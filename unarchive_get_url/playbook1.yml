@@ -1,0 +1,15 @@
+ - name: unarchive
+   hosts: all
+   tasks: 
+   - name: unarchive node exporter
+     # installe une fois en localhost
+     get_url: 
+       url: https://github.com/prometheus/node_exporter/releases/download/v1.8.1/node_exporter-1.8.1.linux-386.tar.gz
+       dest: /tmp/ 
+     delegate_to: localhost
+     run_once: yes
+
+   - name: copy et unarchive
+     unarchive: 
+       src: /tmp/node_exporter-1.8.1.linux-386.tar.gz
+       dest: /tmp/

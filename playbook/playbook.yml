@@ -1,0 +1,7 @@
+- name: playbook
+  hosts: node1
+  remote_user: maxime
+  tasks:
+  - name: Debug
+    debug: 
+      msg: "{{ var1 }}"

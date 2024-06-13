@@ -1,0 +1,14 @@
+with_items -> liste de dictionnaire
+with_nested -> liste de liste
+with_together -> croissement de deux listes
+with_dict -> parcours de dictionnaire
+with_fileglob -> liste de fichier avec pattern et non récursif
+with_filetree -> liste de fichier dans une arborescence avec critères
+with_sequence -> ranges interval
+with_random_choice -> tirage au sort
+with_first_found -> premier élément de la liste
+with_lines -> chaque ligne de la d'un script
+with_ini -> parcours init file
+with_inventory_hostnames -> avec l'inventory
+
+

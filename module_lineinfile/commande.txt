@@ -1,0 +1,11 @@
+inser une ligne dans un fichier ou faire un changement
+backrefs -> pour utiliser des captures via regexp
+backup -> backup
+create -> si le fichier n'existe pas il est crée
+firstmatch -> avec insertafter / insertbefore première occurrence
+insertafter -> insertion après la ligne recherché (default EOF > regex sans backrefs
+insertbefore -> pareil mais avant la ligne
+line -> ligne à ajouter ou remplacer (avec la capture)
+mode / group / owner / path / state / validate
+regexp -> expression régulière permettqnt de rechercher la ligne
+

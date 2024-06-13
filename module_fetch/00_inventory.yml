@@ -1,0 +1,6 @@
+all:
+  hosts:
+    node1:
+      var1: toto
+    node2: 
+      var1: ssh

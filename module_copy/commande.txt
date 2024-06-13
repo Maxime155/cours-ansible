@@ -1,0 +1,15 @@
+la commande scp
+attributes -> pour un fichier
+backup -> réalise une copie datée avant la copie
+checksum -> vérifie le fichier via un hash
+content -> dans le cas ou le fichier la source (ex un vault)
+decrypt -> déchiffre les fichiers s'ils ont du vault
+dest -> localisation du fichier sur les remotes serveur
+directory_mode -> dans le cas d'une recopie en mode récursif
+follow -> indique le filesystem dans la destination
+remote_src -> no > copie du master vers la target / yes > copie de target à target
+validate -> checker après la modification d'un fichier
+mode-> permission
+group
+force
+owner

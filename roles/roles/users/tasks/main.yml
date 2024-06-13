@@ -1,0 +1,9 @@
+---
+
+- name: création du user devops
+  user:
+    name: devops
+    shell: /bin/bash
+    groups: sudo
+    append: yes
+    password: "{{ 'password' | password_hash('sha512') }}"

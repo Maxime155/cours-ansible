@@ -1,0 +1,9 @@
+mondictionnairedossier:
+- {dir: "toto1"}
+- {dir: "toto2"}
+- {dir: "toto3"}
+mondictionnairefichier:
+- {dir: "toto1", fichier: "tata.txt"}
+- {dir: "toto1", fichier: "tatz.txt"}
+- {dir: "toto2", fichier: "tate.txt"}
+- {dir: "toto3", fichier: "tate.txt"}

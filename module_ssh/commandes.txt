@@ -1,0 +1,20 @@
+le openssh_keypair
+attributes -> fichier non supprimable
+force -> génére la clé si elle existe déjà
+group -> group propriétaire du fichier
+mode -> permission
+owner -> owner
+path -> le chemin des clefs, il faut les sécuriser
+regenerate -> never / fall / partial_idempotence (si non conforme) / full idempotence (si non lisible) / always
+size -> taille de la clé
+state -> present/absent
+type -> rsa / dsa / rsa1 / ecdsa / ed25519
+unsafe_writes -> prévenir les corruptions de fichiers
+
+authorized_key -> pour déployer la clé
+follow -> suivre les liens symboliques
+key -> contenu de la clé (cf lookup)
+key_options -> from=<ip>...
+manage_dir -> gère lui même le répertoire (default yes)
+user -> utilisateur sur lequelle la machine sera crée
+

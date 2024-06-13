@@ -1,0 +1,24 @@
+- name: module_user
+  hosts: all
+  become: yes
+  tasks: 
+  - name: création group pour toto
+    group:
+      name: totogroup
+      state: present
+  - name: création user toto
+    user:
+      name: toto1
+      state: present
+      groups: totogroup
+      password: "{{ 'password' | password_hash('sha512') }}"
+      shell: "/bin/bash"
+    register: __user_toto1
+  - name: debug user
+    debug:
+      var: __user_toto1
+
+    # - name: remove user
+    #   user: 
+    #     name: toto
+    #     state: absent

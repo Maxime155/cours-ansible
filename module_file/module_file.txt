@@ -1,0 +1,5 @@
+objectif : gestion des fichiers et répertoires
+
+Perimetre : fichier, répertoire, liens symboliques
+
+ansible-playbook -i inventory -u user -k #pour mdp playbook.yml 

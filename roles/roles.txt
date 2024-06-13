@@ -1,0 +1,27 @@
+role =  des actions avec le même objectif
+	les fichiers liés (templates, files)
+	des variables par défaut 
+le but
+élément de partage -> approche générale (role partagé avec ansible galaxy)
+partage -> un dépot git = un role
+
+plus le role est petit plus il est réutilisable
+il ne faut pas avoir d'impact global sur un role
+
+la structure:
+	- tasks -> l'action
+	- default -> variables par défaut
+	- vars -> variable du role
+	- handlers -> les déclencheurs
+	- templates -> fichiers en jinja de préférence
+	- files -> fichiers à copier ou en statique
+	- meta -> partager sur galaxy et inclure des dépendances
+	- test -> éléments de test
+	- library -> les différents modules
+
+Galaxy
+-> les roles sont partagés sur galaxy
+
+commande:
+ansible-galaxy init "nomdurole"
+

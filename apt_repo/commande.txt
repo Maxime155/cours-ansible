@@ -1,0 +1,18 @@
+APT_KEY
+date -> directement fournir la clée
+file -> chemin vers un fichier contenant la clée
+id -> identifiant de la clée pour la supprimer
+keyring -> chemin vers la clée
+keyserver -> le serveur ou trouver la clée
+state -> present / absent
+url -> pour télécharger la clée
+validate_certs -> valider le certificat ou non
+
+APT_REPOSITORY
+codename-> si par un ppa surcharge la distribution
+filename -> nom du fichier dans /etc/apt/source.list.d/
+mode / state / validate_certs
+repo -> dépôt source
+update_cache -> pour update
+
+

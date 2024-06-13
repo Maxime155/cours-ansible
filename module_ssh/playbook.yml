@@ -1,0 +1,36 @@
+- name: module_ssh
+  hosts: all
+  tasks:
+  # créer une clé sur la machine maitre et déployer sur les nodes
+  - name: génération de la clé
+    openssh_keypair:
+      path: /tmp/toto1
+      type: rsa
+      size: 4096
+      state: present
+        # si on mets yes il va écraser la clé 2 fois car on a deux machines 
+      force: no
+    delegate_to: localhost
+    # le jouer que pour la première machine qui rencontre
+    run_once: yes
+# Si vous êtes en tant qu'utilisateur, il faut le mot de passe root 
+# ansible-playbook -i 00_inventory.yml -K playbook.yml
+  
+  - name: création user ssh
+    user:
+      name: ssh
+      shell: /bin/bash
+      groups: sudo
+      append: yes
+      # chiffrer le password ou le mieux et de faire un vault
+      password: "{{ 'password' |password_hash('sha512') }}" 
+    become: yes
+
+  - name: déployer SSH key
+    authorized_key:
+      user: ssh
+      #Retrouver le fichier /tmp/toto1.pub
+      key: "{{ lookup('file', '/tmp/toto1.pub') }}"
+      state: present
+    become: yes
+  # ssh -i /tmp/toto1 ssh@node1

@@ -1,0 +1,17 @@
+- name: module APT
+  hosts: all
+  become: yes
+  tasks: 
+  - name: mettre à jour le cache
+    apt:
+      update_cache: yes
+      cache_valid_time: 3600
+    # check avec apt list -i haproxy
+  - name: installer un paquet
+    apt:
+      name: haproxy
+      state: latest
+        # Désinstallation total avec les répertoires
+        #purge: yes
+        #autoremove: yes
+

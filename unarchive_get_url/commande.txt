@@ -1,0 +1,35 @@
+UNARCHIVE
+prérequis  unzip et tar
+
+creates -> si le répertoire ou fichier existe la tasks n'est pas lancé
+decrypt -> défault yes déchiffre les fichiers vaultés
+dest -> destination des élements
+exclude -> fichier ou chemin à exclure de unarchive
+keep_newer -> garder le plus récent
+list_files -> retourne la liste des fichiers de l'archive
+mode / group / user
+remote_src -> passer par le host ansible pour récupérer l'archive
+src -> no > copy du fichier vers la cible / yes > download et envoie
+unsafe_writes -> éviter les corruptions de fichier
+validate_certs -> pour https default yes
+
+GET_URL
+backup -> garde un backup horodaté
+checksum -> vérifie le fichier à l'arrivée
+client_cert -> certification cliente tls
+client_key -> non nécessaire pour tls
+dest -> chemin ou le fichier est stocké
+force -> remplacement du fichier s'il existe
+force_basic_auth -> pour utiliser l'identification basic auth
+group / mode / owner
+headers -> headers dans la requête
+http_agent -> exemple firefox
+sha256sum -> calcul du sh256 après téléchargement
+timeout -> durée de la requête
+tmp_dest -> localisation temporaire pour le téléchargement
+unsafe_writes -> évite la corruption de fichier
+url -> url de la source
+url_password -> pour le basic_auth
+url_username -> pour le basic_auth
+use_proxy -> s'il y a un proxy
+validate_certs -> validation du certificats

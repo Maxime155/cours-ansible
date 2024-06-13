@@ -1,0 +1,17 @@
+allow_unauthenticated -> autoriser les paquets non authentifiés
+autoclean -> effacement des anciennes versions des paquets
+cache_valid_time -> durée durant laquelle ne pqs remettre à jour le cache apt
+deb -> lien vers une source de paquet .deb
+default_release -> version par défaut
+dpkg_options -> option d'installation dpkg
+force -> --force-yes 
+name -> nom du paquet
+only_upgrade -> met à jour les paquets installés
+policy_rc_d -> règle de déclenchement automatique de l'installation des paquets
+purge -> --purge
+state -> present / absent / latest / fixed / build-dep
+update_cache -> réalise un update avant installation
+update_cache_retries -> nombre de tentatives de l'update
+update_cache_retry_max_delay -> délai de chaque retry
+upgrade ->  yes / no / safe / dist / full
+

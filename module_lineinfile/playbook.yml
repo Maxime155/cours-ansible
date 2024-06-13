@@ -1,0 +1,24 @@
+- name: Lineinfile
+  hosts: all
+  become: yes
+  tasks: 
+  - name: test lineinfile
+    lineinfile: 
+      dest: /tmp/test1.conf
+      line: "test"
+      state: present
+      create: True
+  - name: changer les mots test par exemple
+    lineinfile: 
+      dest: /tmp/test1.conf
+      line: "exemple"
+      regexp: "^test$"
+      state: present
+  - name: commenter une ligne
+    replace: 
+      path: /tmp/test1.conf
+      regexp: "^exemple$"
+      replace: "# {{ item }}"
+    with_items:
+      - "exemple"
+

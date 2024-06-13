@@ -1,0 +1,31 @@
+format jinja2 (python)
+génération d'un template avec des variables
+
+backup -> crée une sauvegarde avant modification
+block_end_string / start -> fin/début de block template {% / %}
+dest -> fichier cible
+follow -> lien symbolique
+force -> par défaut yes écrase le fichier de destination
+group -> group
+lstrip_blocks -> respect stricte ou pas des tabulations et blancs #lstrip_blocks: True
+mode -> permissions
+newline_sequence -> élément utilisé pour nouvel ligne
+output_encoding -> encodage defaut : utf8
+owner -> propriétaire
+src -> source (template), ou directory template et role
+trim_blocks -> supprime retour à la ligne
+unsafe_writes -> éviter corruption de fichier
+validate -> valider avant modification
+variable_start_string -> caractères de début des variables {{}}
+
+
+####Variable
+ansible_managed: prévenir à chaque template
+template_host -> qui a joué le template
+template_uid -> l'user qui a fait la modification
+template_path -> le chemin
+template_fullpath -> chemin complet
+template_run_date -> date de mofication
+exemple
+#{{ template_run_date}} - "{{ ansible_managed }}" via {{ template_uid }}@ {{ template_host }}
+

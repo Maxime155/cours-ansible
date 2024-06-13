@@ -1,0 +1,29 @@
+- name: les_boucles
+  hosts:
+    - all
+  become: yes
+  tasks: 
+  - name: création de répertoire
+    file: 
+      # path: "/tmp/toto1/{{ item }}"
+      path: "/tmp/toto1/{{ item.dir }}"
+      state: directory
+      recurse: yes
+    with_items: "{{ mondictionnairedossier }}"
+  - name: création de fichier
+    file:
+      state: touch    
+      path: "/tmp/toto1/{{ item.dir }}/{{ item.fichier }}"
+    with_items: "{{ mondictionnairefichier }}"
+  - name: création de répertoire2
+    file: 
+      path: "/tmp/toto2/{{ item }}"
+      state: directory
+      recurse: yes
+    with_inventory_hostnames:
+    - "{{ groups['gp1'] }}"
+        # création de trois répertoires
+        #with_items:
+        #- toto1
+        #- toto2
+        #- toto3

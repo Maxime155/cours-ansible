@@ -1,0 +1,3 @@
+ansible-galaxy init roles/ssh_keygen
+ansible-galaxy init roles/ssh_users
+ansible-galaxy init roles/nginx

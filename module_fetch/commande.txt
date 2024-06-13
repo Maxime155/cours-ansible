@@ -1,0 +1,7 @@
+le fetch = recupérer des fichier vers les nodes (scp inversé)
+dest -> machine avec ansible
+fail_on_missing -> erreur si le fichier manquant (défaut yes)
+flat -> écrase ou force la destination
+src -> target
+
+

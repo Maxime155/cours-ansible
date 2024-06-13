@@ -1,0 +1,4 @@
+path -> chemin fichier ou dossier
+follow -> suivre les liens symboliques
+get_checksum -> voir la checksum
+

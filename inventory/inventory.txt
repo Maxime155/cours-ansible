@@ -1,0 +1,2 @@
+ansible-inventory -i 00_inventory.yml --list ##en json
+ansible-inventory -i 00_inventory.yml --list --export
