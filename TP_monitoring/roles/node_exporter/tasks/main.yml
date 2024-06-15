@@ -5,6 +5,12 @@
     path: "{{ node_exporter_bin }}"
   register: __check_node_exporter_present
 
+- name: si node exporter est déjà installé on fait un get version
+  shell: "cat /etc/systemd/system/node_exporter.service | grep Version | sed s/'.*Version'//g"
+  register: __get_node_exporter_version
+  when: __check_node_exporter_present.stat.exists == true
+  changed_when: false
+
 - name: création de l'user
   user:
     name: "{{ node_exporter_user }}"
@@ -26,7 +32,7 @@
     src: "{{ node_exporter_src_depo }}"
     dest: /tmp/
     remote_src: yes
-  when: __check_node_exporter_present.stat.exists == false
+  when: __check_node_exporter_present.stat.exists == false or not __get_node_exporter_version.stdout != node_exporter_version
 
 - name: déplacer le dossier node exporter dans le bin/
   copy:  
@@ -36,14 +42,14 @@
     group: "{{ node_exporter_group }}"
     mode: 0755
     remote_src: yes
-  when: __check_node_exporter_present.stat.exists == false
+  when: __check_node_exporter_present.stat.exists == false or not __get_node_exporter_version.stdout != node_exporter_version
 
 - name: netoyage
   file:
     path: /tmp/node_exporter-{{ node_exporter_version }}.linux-amd64/
     state: absent
 
-- name: install service
+- name: installation du service
   template: 
     src: node_exporter.service.j2
     dest: /etc/systemd/system/node_exporter.service
@@ -58,4 +64,6 @@
   systemd:
     name: node_exporter
     state: started
-    enabled: yes 
+    enabled: yes
+
+ 

@@ -1,6 +1,6 @@
 [Unit]
 Description=Node exporter
-After=network-online.target
+After=network-online.target Version {{ node_exporter_version }}
 
 [Service]
 User={{ node_exporter_user }}

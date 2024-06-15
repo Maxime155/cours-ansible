@@ -1,5 +1,11 @@
 - name: installation node exporter
-  hosts: all
+  hosts: node_exporter
   become: yes
   roles: 
   - node_exporter
+
+- name: installation de prometheus/grafana
+  hosts: prometheus
+  become: yes
+  roles:
+  - prometheus
