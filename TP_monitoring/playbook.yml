@@ -1,0 +1,5 @@
+- name: installation node exporter
+  hosts: all
+  become: yes
+  roles: 
+  - node_exporter

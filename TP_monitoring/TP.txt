@@ -1,0 +1,4 @@
+On va travailler sur 4 noeuds
+1) installation de node exporter, prometheus, grafana
+2) un de monitoring avec prometheus/grafana
+3) Monitoré par node exporter

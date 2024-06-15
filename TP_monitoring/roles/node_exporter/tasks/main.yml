@@ -1,0 +1,61 @@
+---
+# tasks file for roles/node_exporter
+- name: check si node exporter est installé
+  stat: 
+    path: "{{ node_exporter_bin }}"
+  register: __check_node_exporter_present
+
+- name: création de l'user
+  user:
+    name: "{{ node_exporter_user }}"
+    append: yes
+    groups: "{{ node_exporter_group }}"
+    shell: /usr/sbin/nologin
+    system: true
+    create_home: false
+
+- name: création du répertoire config du node exporter
+  file:
+    path: "{{ node_exporter_dir_conf }}"
+    state: directory
+    owner: "{{ node_exporter_user }}"
+    group: "{{ node_exporter_group }}"
+
+- name: télécharger et dézipper node exporter s'il n'existe pas
+  unarchive:
+    src: "{{ node_exporter_src_depo }}"
+    dest: /tmp/
+    remote_src: yes
+  when: __check_node_exporter_present.stat.exists == false
+
+- name: déplacer le dossier node exporter dans le bin/
+  copy:  
+    src: "/tmp/node_exporter-{{ node_exporter_version }}.linux-amd64/node_exporter"
+    dest: "{{ node_exporter_bin }}"
+    owner: "{{ node_exporter_user }}"
+    group: "{{ node_exporter_group }}"
+    mode: 0755
+    remote_src: yes
+  when: __check_node_exporter_present.stat.exists == false
+
+- name: netoyage
+  file:
+    path: /tmp/node_exporter-{{ node_exporter_version }}.linux-amd64/
+    state: absent
+
+- name: install service
+  template: 
+    src: node_exporter.service.j2
+    dest: /etc/systemd/system/node_exporter.service
+    owner: root
+    group: root
+    mode: 0755
+  notify: reload_daemon_and_restart_mode_exporter
+
+- meta: flush_handlers
+
+- name: service démarre toujours
+  systemd:
+    name: node_exporter
+    state: started
+    enabled: yes 

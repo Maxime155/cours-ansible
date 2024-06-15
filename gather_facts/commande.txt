@@ -1,0 +1,5 @@
+facts = données relatives aux machines plus ou moins détaillées
+(networks, devices, os, hardware, connexion utilisée, montages/volumes)
+ansible_facts -> détaille avec les facts
+ansible -i 00_inventory.yml all -m setup
+ansible -i 00_inventory.yml all -m setup -a "filter=ansible_user*"
